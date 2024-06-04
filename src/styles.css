@@ -1,0 +1,213 @@
+/*Autor: Víctor Martínez*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  background-color: #000000e3;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Baraja {
+  display: flex;
+  width: 960px;
+  height: 610px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.Carta {
+  background-color: #00ffcf;
+  width: 200px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.Carta.Frontal {
+  background-color: #fffb00;
+}
+
+.Carta .Contenido {
+  font-size: 5em;
+  text-align: center;
+  background-color: transparent;
+}
+
+
+
+.Mensaje {
+  color: #fff;
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+
+
+.Carta .Cortina {
+  background-color: #00ffcf;
+  animation-name: cortina;
+  animation-duration: 450ms;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  position: absolute;
+  left: 0;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  background-color: #000;
+}
+
+.panel-control{
+  padding: 10px;
+  background-color: rgba(0 , 0, 0, .8);
+}
+
+.boton-intentar{
+  border: none;
+  background-color: royalblue;
+  color: #fff;
+  padding: 18px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.boton-intentar:hover {
+  border-radius: 20px;
+}
+
+
+
+.intentos {
+  color: #fff;
+
+}
+
+.intentos.circulo{
+  background-color: royalblue;
+  border-radius: 50%;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+
+
+.main {
+  background: #fff;
+  width: 420px;
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.main__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.control {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.boton {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.playbackRate {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.boton-reintentar {
+  width: 100%;
+}
+
+
+.musicaFondo {
+  height: 40px;
+  width: 310px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.bar__title {
+  text-align: center;
+}
+
+.bar__input {
+  width: 200px;
+}
+
+.modal {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: rgba(0,0,0,.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.button-close {
+  border: none;
+  padding: 10px 36px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #0418ffde;
+  color: #fff;
+}
+
+.button-close:hover {
+  border-radius: 20px;
+}
+
+
+
+@keyframes cortina {
+  to {
+    left: -100%;
+  }
+}

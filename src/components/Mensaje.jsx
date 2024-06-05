@@ -1,7 +1,7 @@
 /*Autor: Víctor Martínez*/
 
-export default function Mensaje({ descripcion, isShow }) {
+export default function Mensaje({ title, visible }) {
 
-    if (!isShow) return
-    return <h1 className="Mensaje">{descripcion}</h1>
+    if (!visible) return
+    return <h1 className="Mensaje">{title}</h1>
 }

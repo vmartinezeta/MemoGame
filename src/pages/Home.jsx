@@ -7,7 +7,7 @@ import TogglePlaybackRate from '../components/TogglePlaybackRate'
 
 
 function Home() {
-    const { signin, gameOver } = useBaraja()
+    const { startGame, gameOver} = useBaraja()
     const navigate = useNavigate()
 
 
@@ -17,7 +17,7 @@ function Home() {
 
 
     const handleClick = () => {
-        signin()
+        startGame()
         navigate("/game")
     }
 

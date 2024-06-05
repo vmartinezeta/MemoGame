@@ -3,10 +3,10 @@ import { Navigate, Outlet, useLocation } from "react-router-dom"
 
 
 function ProtectedRoute() {
-    const { isAutorizado } = useBaraja()
+    const {isPlaying} = useBaraja()
     const location = useLocation()
 
-    if (!isAutorizado && location.pathname !== "/") {
+    if (!isPlaying && location.pathname !== "/") {
         return <Navigate to="/" replace />
     }
     return <Outlet />

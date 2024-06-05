@@ -7,14 +7,24 @@ import GameOver from "../components/GameOver"
 
 
 export default function Game() {
-
-    const { baraja } = useBaraja()
+    const { baraja, time, setDeltaTime } = useBaraja()
     const { voltearCartas, emparejandoCartas, desemparejarCartas, restablecer } = useBaraja()
 
 
     useEffect(() => {
         document.title = "Game"
     }, [])
+
+    useEffect(() => {
+
+        const timer = setInterval(() => {
+            setDeltaTime()
+        }, 1000)
+
+        return () => {
+            clearInterval(timer)
+        }
+    }, [time])
 
     useEffect(() => {
         if (!emparejandoCartas) {
@@ -37,7 +47,6 @@ export default function Game() {
             {baraja.toArray().map((carta, index) => {
                 return <CartaAnimada key={index} carta={carta} />
             })}
-
             <GameOver />
         </div>
     </div>

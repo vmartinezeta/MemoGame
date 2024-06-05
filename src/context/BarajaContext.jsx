@@ -7,24 +7,24 @@ import fondomp3 from "../assets/fondo.mp3"
 
 export const BarajaContext = createContext()
 
+
 const parejas = 6
+const MAX_INTENTOS = 10
+const MAX_TIME = 15
 let barajaFactory = new BarajaFactory({ parejas})
 let barajaEnJuego = barajaFactory.toBaraja().barajear()
-
-
-const MAX_INTENTOS = 5
 
 export const BarajaProvider = ({ children }) => {
     const [baraja, setBaraja] = useState(barajaEnJuego.toBarajaArray())
     const [intentos, setIntentos] = useState(MAX_INTENTOS)
     const [bloqueo, setBloqueo] = useState(false)
     const [emparejandoCartas, setEmparejandoCartas] = useState(false)
-    const [isAutorizado, setAutorizado] = useState(false)
+    const [isPlaying, setPlaying] = useState(false)
     const [isActivaMusicFondo, setActivaMusicFondo] = useState(false)
     const [playbackRate, setPlaybackRate] = useState(2)
     const [vol, setVol] = useState(60)
     const [gameOver, setGameOver] = useState(false)
-
+    const [time, setTime] = useState(MAX_TIME)
     
     const [play, { stop }] = useSound(fondomp3, {
         playbackRate,
@@ -33,13 +33,20 @@ export const BarajaProvider = ({ children }) => {
         volume: vol / 100
     })
 
+
+    const setDeltaTime = () => {
+        if (time === 0) return
+        setTime(time - 1)
+    }
+
     const reset = () => {
         barajaFactory = new BarajaFactory({ parejas })
         barajaEnJuego = barajaFactory.toBaraja().barajear()
         setBaraja(barajaEnJuego.toBarajaArray())
         setIntentos(MAX_INTENTOS)
+        setTime(MAX_TIME)
         setBloqueo(false)
-        setAutorizado(false)
+        setPlaying(false)
         setGameOver(true)
     }
 
@@ -70,8 +77,8 @@ export const BarajaProvider = ({ children }) => {
         setActivaMusicFondo(!isActivaMusicFondo)
     }
 
-    const signin = () => {
-        setAutorizado(true)
+    const startGame = () => {
+        setPlaying(true)
         setGameOver(false)
     }
 
@@ -118,11 +125,13 @@ export const BarajaProvider = ({ children }) => {
     return <BarajaContext.Provider
         value={{
             vol,
+            time,
+            setDeltaTime,
             gameOver,
             baraja,
             intentos,
             bloqueo,
-            isAutorizado,
+            isPlaying,
             emparejandoCartas,
             isActivaMusicFondo,
             verCaraFrontal,
@@ -130,7 +139,7 @@ export const BarajaProvider = ({ children }) => {
             emparejarCartas,
             desemparejarCartas,
             voltearCartas,
-            signin,
+            startGame,
             toggle,
             play,
             stop,
